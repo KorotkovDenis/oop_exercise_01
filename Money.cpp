@@ -53,18 +53,24 @@ money money::m_sum(const money &m) const{
 
 money money::m_dig_div(const double a) const{
     money res;
-    res.pound = this->pound / a;
-    res.shilling = this->shilling / a;
-    res.pension = this->pension / a;
+    unsigned long long all = (*this).m_all() / a;
+    res.pound = all / 240;
+    all %= 240;
+    res.shilling = all / 12;
+    all %= 12;
+    res.pension = all;
     return res;
 }
 
 
 money money::m_dig_prod(const double a) const{
     money res;
-    res.pound = this->pound * a;
-    res.shilling = this->shilling * a;
-    res.pension = this->pension * a;
+    unsigned long long all = (*this).m_all() * a;
+    res.pound = all / 240;
+    all %= 240;
+    res.shilling = all / 12;
+    all %= 12;
+    res.pension = all;
     return res;
 }
 
