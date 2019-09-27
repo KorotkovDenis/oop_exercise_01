@@ -10,7 +10,7 @@ signed main() {
     double div, prod;
     std::cin >> rpo >> rsh >> rpe;
     std::cin >> div >> prod;
-    money r {rpo, int(rsh), int(rpe)};
+    money r {rpo, (unsigned char)(rsh), (unsigned char)(rpe)};
     money res {};
     if (l.m_equal(r)) {
         std::cout << "equal: YES\n";

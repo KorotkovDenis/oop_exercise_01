@@ -1,0 +1,3 @@
+/home/bftbg/oop/git/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/bftbg/oop/git/cmake-build-debug/CMakeFiles/lab1.dir
+/home/bftbg/oop/git/cmake-build-debug/CMakeFiles/edit_cache.dir
