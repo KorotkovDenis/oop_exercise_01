@@ -11,14 +11,14 @@ struct money {
     money(unsigned long long po, unsigned char sh, unsigned char pe);
     void m_print(std::ostream& os) const;
     void m_scan(std::istream& is);
-    bool m_equal(const money& a) const;
-    void m_sum(const money& lhs, const money& rhs);
-    void m_dig_div(const money& m, const double a);
+    int m_cmp(const money& a) const;
+    money m_sum(const money& m) const;
+    money m_dig_div(const double a) const;
     double m_div(const money& m) const;
-    void m_dig_prod(const money& m, const double a);
+    money m_dig_prod(const double a) const;
     void m_unif();
 private:
-    unsigned long long all;
+    unsigned long long m_all() const;
 };
 
 #endif

@@ -1,4 +1,4 @@
-equal: NO
+cmp: <
 sum: 100 100 100
 digital division: 0 0 0
 digital product: 0 0 0

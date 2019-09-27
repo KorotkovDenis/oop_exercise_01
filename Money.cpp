@@ -5,7 +5,6 @@ money::money() {
     pound = 0;
     shilling = 0;
     pension = 0;
-    all = 0;
 }
 
 
@@ -13,7 +12,11 @@ money::money(unsigned long long po, unsigned char sh, unsigned char pe) {
     pound = po;
     shilling = sh;
     pension = pe;
-    all = pe + sh * 12 + po * 12 * 20;
+}
+
+
+unsigned long long money::m_all() const {
+    return this->pension + this->shilling * 12 + this-> pound * 12 * 20;
 }
 
 
@@ -28,41 +31,46 @@ void money::m_scan(std::istream& is) {
     is >> this->pound >> sh >> pe;
     this->shilling = sh;
     this->pension = pe;
-    this->all = this->pension + this->shilling * 12 + this->pound * 12 * 20;
 }
 
 
-bool money::m_equal(const money &a) const {
-    return this->pound == a.pound && this->shilling == a.shilling && this->pension == a.pension;
+int money::m_cmp(const money &a) const {
+    if ((*this).m_all() > a.m_all()) return 1;
+    else if ((*this).m_all() == a.m_all()) return 0;
+    else return -1;
+
 }
 
 
-void money::m_sum(const money &lhs, const money &rhs) {
-    this->pound = lhs.pound + rhs.pound;
-    this->shilling = lhs.shilling + rhs.shilling;
-    this->pension = lhs.pension + rhs.pension;
-    this->all = lhs.all + rhs.all;
+money money::m_sum(const money &m) const{
+    money res;
+    res.pound = this->pound + m.pound;
+    res.shilling = this->shilling + m.shilling;
+    res.pension = this->pension + m.pension;
+    return res;
 }
 
 
-void money::m_dig_div(const money &m, const double a) {
-    this->pound = m.pound / a;
-    this->shilling = m.shilling / a;
-    this->pension = m.pension / a;
-    this->all = this->pension + this->shilling * 12 + this->pound * 12 * 20;
+money money::m_dig_div(const double a) const{
+    money res;
+    res.pound = this->pound / a;
+    res.shilling = this->shilling / a;
+    res.pension = this->pension / a;
+    return res;
 }
 
 
-void money::m_dig_prod(const money &m, const double a) {
-    this->pound = m.pound * a;
-    this->shilling = m.shilling * a;
-    this->pension = m.pension * a;
-    this->all = this->pension + this->shilling * 12 + this->pound * 12 * 20;
+money money::m_dig_prod(const double a) const{
+    money res;
+    res.pound = this->pound * a;
+    res.shilling = this->shilling * a;
+    res.pension = this->pension * a;
+    return res;
 }
 
 
 double money::m_div(const money &m) const {
-    return this->all / m.all;
+    return (*this).m_all() / m.m_all();
 }
 
 

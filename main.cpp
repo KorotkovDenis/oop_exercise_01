@@ -12,19 +12,21 @@ signed main() {
     std::cin >> div >> prod;
     money r {rpo, (unsigned char)(rsh), (unsigned char)(rpe)};
     money res {};
-    if (l.m_equal(r)) {
-        std::cout << "equal: YES\n";
+    if (l.m_cmp(r) > 0) {
+        std::cout << "cmp: >\n";
+    } else if (l.m_cmp(r) == 0) {
+        std::cout << "cmp: =\n";
     } else {
-        std::cout << "equal: NO\n";
+        std::cout << "cmp: <\n";
     }
     std::cout << "sum: ";
-    res.m_sum(l, r);
+    res = l.m_sum(r);
     res.m_print(std::cout);
     std::cout << "digital division: ";
-    res.m_dig_div(l, div);
+    res = l.m_dig_div(div);
     res.m_print(std::cout);
     std::cout << "digital product: ";
-    res.m_dig_prod(l, prod);
+    res = l.m_dig_prod(prod);
     res.m_print(std::cout);
     std::cout << "money division: " << l.m_div(r) << '\n';
 }
